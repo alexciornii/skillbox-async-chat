@@ -51,8 +51,6 @@ class ServerProtocol(asyncio.Protocol):
 
     def send_history(self):
         for msg in self.server.history[9::-1]:
-            if self.server.history.index(msg) > 9:
-                break
             self.transport.write(f"{msg['login']}:{msg['message']}".encode())
      
     def save_history(self, message):
